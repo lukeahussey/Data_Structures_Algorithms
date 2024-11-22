@@ -12,20 +12,25 @@ class HashTable {
   }
 
   set(key, value) {
-    console.log('Attempting set...');
-    if (this.get(key) !== undefined) {
-      throw new Error(`Unhandled hash collision detected at key "${key}":\n`, value);
+    let address = this._hash(key);
+    if (!this.data[address]) {
+      this.data[address] = [];
     }
-    this.data[this._hash(key)] = value;
-    console.log(`New value stored against key "${key}":\n`, value);
+    this.data[address].push([key, value]);
+    return this.data;
   }
 
   get(key) {
-    let value = this.data[this._hash(key)];
-    if (value !== undefined) {
-      console.log(`Retrieving value stored with key "${key}":\n`, value);
+    const address = this._hash(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
+      }
     }
-    return value;
+    return undefined;
   }
 
   listContent() {
@@ -40,7 +45,6 @@ myHashTable.set('grapes', 10000)
 myHashTable.get('grapes');
 
 myHashTable.set('apples', 9)
-myHashTable.set('apples', 11)   // throws unhandled hash collision error
 myHashTable.get('apples');
 
 myHashTable.listContent();
