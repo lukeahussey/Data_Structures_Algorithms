@@ -13,7 +13,12 @@ class LinkedList {
   }
   append(value) {
     const newTail = new Node(value);
-    this.tail.next = newTail;
+    if (this.length === 0) {
+      this.head = newTail;
+    }
+    else {
+      this.tail.next = newTail;
+    }
     this.tail = newTail;
     this.length++;
     return this.printList();
@@ -39,9 +44,27 @@ class LinkedList {
     this.length++;
     return this.printList();
   }
+  remove(index) {
+    if (index === 0) {
+      this.length > 1 
+        ? this.head = this.head.next
+        : this.head = null;
+    }
+    else if (index >= this.length) {
+      throw new Error(`Index "${index}" is invalid or outside the bounds of the list`);
+    }
+    else {
+      const leaderNode = this.traverseToIndex(index-1);
+      const nodeToDelete = leaderNode.next;
+      leaderNode.next = nodeToDelete.next;
+      nodeToDelete.next = null;
+    }
+    this.length--;
+    return this.printList();
+  }
   traverseToIndex(index) {
     if (isNaN(index) || index < 0 || index > this.length+1) {
-      console.error(`Index "${index}" is Not a Number or outside the bounds of the list`)
+      throw new Error(`Index "${index}" is invalid or outside the bounds of the list`);
     }
     let counter = 0;
     let currentNode = this.head;
@@ -65,6 +88,7 @@ class LinkedList {
 
 let myLinkedList = new LinkedList(10);
 myLinkedList.printList();
+myLinkedList.remove(0);
 
 myLinkedList.append(5);
 myLinkedList.append(16);
@@ -74,3 +98,8 @@ myLinkedList.prepend(1);
 
 myLinkedList.insert(2,99);
 myLinkedList.insert(4,96);
+
+myLinkedList.remove(2);
+myLinkedList.remove(4);
+myLinkedList.remove(3);
+myLinkedList.remove(0);
