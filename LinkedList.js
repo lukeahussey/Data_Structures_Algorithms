@@ -16,12 +16,40 @@ class LinkedList {
     this.tail.next = newTail;
     this.tail = newTail;
     this.length++;
+    return this.printList();
   }
   prepend(value) {
     const newHead = new Node(value);
     newHead.next = this.head;
     this.head = newHead;
     this.length++;
+    return this.printList();
+  }
+  insert(index, value) {
+    if (index === 0) {
+      return this.prepend(value);
+    }
+    if (index >= this.length+1) {
+      return this.append(value);
+    }    
+    const newNode = new Node(value);
+    const leaderNode = this.traverseToIndex(index-1); // FIND the node before the insert index
+    newNode.next = leaderNode.next;
+    leaderNode.next = newNode;
+    this.length++;
+    return this.printList();
+  }
+  traverseToIndex(index) {
+    if (isNaN(index) || index < 0 || index > this.length+1) {
+      console.error(`Index "${index}" is Not a Number or outside the bounds of the list`)
+    }
+    let counter = 0;
+    let currentNode = this.head;
+    while (counter != index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
+    return currentNode;
   }
   printList() {
     let currentNode = this.head;
@@ -37,11 +65,12 @@ class LinkedList {
 
 let myLinkedList = new LinkedList(10);
 myLinkedList.printList();
+
 myLinkedList.append(5);
-myLinkedList.printList();
 myLinkedList.append(16);
-myLinkedList.printList();
+
 myLinkedList.prepend(2);
-myLinkedList.printList();
 myLinkedList.prepend(1);
-myLinkedList.printList();
+
+myLinkedList.insert(2,99);
+myLinkedList.insert(4,96);
