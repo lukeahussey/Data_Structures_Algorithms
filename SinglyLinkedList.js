@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkedList {
+class SinglyLinkedList {
   constructor(value) {
     this.head = new Node(value);
     this.tail = this.head;
@@ -86,7 +86,7 @@ class LinkedList {
   }
 }
 
-let myLinkedList = new LinkedList(10);
+let myLinkedList = new SinglyLinkedList(10);
 myLinkedList.printList();
 myLinkedList.remove(0);
 
