@@ -91,7 +91,7 @@ class SinglyLinkedList {
     return currentNode;
   }
   printList() {
-    console.log('\nthis.head: ', this.head, '\n', 'this.tail: ', this.tail);
+    console.log('\nthis.head: ', this.head, '\nthis.tail: ', this.tail, '\nthis.length: ', this.length);
     let currentNode = this.head;
     let output = "\nLIST:\n";
     while (currentNode !== null) {
@@ -99,8 +99,33 @@ class SinglyLinkedList {
         `${currentNode === this.head ? '[HEAD]' : ''} (${currentNode.value}) ${currentNode === this.tail ? '[TAIL]' : ''} <-> `;
       currentNode = currentNode.next;
     }
-    output += "NULL";
+    output += "NULL\n\n=======================================================================";
     console.log(output);
+  }
+  reverse() {
+    console.log("\nREVERSE list:");
+    if (this.length <= 0) {
+      throw new Error("Cannot reverse an empty list");
+    }
+    
+    let listValuesInOrder = this.moveValuesToArray();               // O(n) space complexity
+    for (let i = (listValuesInOrder.length - 1); i >= 0; i--) {     // O(n) time complexity
+      this.append(listValuesInOrder[i]);
+    }
+    return this.printList();
+  }
+  moveValuesToArray() {
+    let listValuesInOrder = [];                                     // O(n) space complexity
+    while (this.head !== null) {                                    // O(n) time complexity
+      listValuesInOrder.push(this.head.value);
+      this.head = this.head.next;
+      if (this.head === null) {
+        this.tail = null;
+      }
+      this.length--;
+      this.printList();
+    }
+    return listValuesInOrder;
   }
 }
 
@@ -114,10 +139,12 @@ myLinkedList.append(16);
 myLinkedList.prepend(2);
 myLinkedList.prepend(1);
 
-myLinkedList.insert(2,99);
-myLinkedList.insert(4,96);
+// myLinkedList.insert(2,99);
+// myLinkedList.insert(4,96);
 
-myLinkedList.remove(2);
-myLinkedList.remove(4);
-myLinkedList.remove(3);
-myLinkedList.remove(0);
+// myLinkedList.remove(2);
+// myLinkedList.remove(4);
+// myLinkedList.remove(3);
+// myLinkedList.remove(0);
+
+myLinkedList.reverse();
