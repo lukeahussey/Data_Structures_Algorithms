@@ -96,27 +96,54 @@ class SinglyLinkedList {
     let output = "\nLIST:\n";
     while (currentNode !== null) {
       output += 
-        `${currentNode === this.head ? '[HEAD]' : ''} (${currentNode.value}) ${currentNode === this.tail ? '[TAIL]' : ''} <-> `;
+        `${currentNode === this.head ? '[HEAD]' : ''} (${currentNode.value}) ${currentNode === this.tail ? '[TAIL]' : ''} -> `;
       currentNode = currentNode.next;
     }
     output += "NULL\n\n=======================================================================";
     console.log(output);
   }
-  reverse() {
-    console.log("\nREVERSE list:");
+  reverseEfficicent() {
+    console.log("\nREVERSE list (Efficient):");
+    if (this.length < 1) {
+      throw new Error("Cannot reverse an empty list");
+    }
+    if (this.length === 1) {
+      console.log("N.B. Reverse operation skipped due to length of 1");
+    }
+    
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+    while (second) {                                                          // O(n) time complexity
+      const temp = second.next;                                               // O(1) space complexity
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+
+    return this.printList();
+  }
+  reverseBruteForce() {
+    console.log("\nREVERSE list (Brute Force):");
     if (this.length <= 0) {
       throw new Error("Cannot reverse an empty list");
     }
-    
-    let listValuesInOrder = this.moveValuesToArray();               // O(n) space complexity
-    for (let i = (listValuesInOrder.length - 1); i >= 0; i--) {     // O(n) time complexity
-      this.append(listValuesInOrder[i]);
+    if (this.length === 1) {
+      console.log("N.B. Reverse operation skipped due to length of 1");
+    }
+    else { 
+      let listValuesInOrder = this.reverseBruteForce_moveValuesToArray();   // O(n) space complexity
+      for (let i = (listValuesInOrder.length - 1); i >= 0; i--) {           // O(n) time complexity
+        this.append(listValuesInOrder[i]);
+      }
     }
     return this.printList();
   }
-  moveValuesToArray() {
-    let listValuesInOrder = [];                                     // O(n) space complexity
-    while (this.head !== null) {                                    // O(n) time complexity
+  reverseBruteForce_moveValuesToArray() {
+    let listValuesInOrder = [];                                             // O(n) space complexity
+  while (this.head !== null) {                                              // O(n) time complexity
       listValuesInOrder.push(this.head.value);
       this.head = this.head.next;
       if (this.head === null) {
@@ -134,6 +161,7 @@ myLinkedList.printList();
 myLinkedList.remove(0);
 
 myLinkedList.append(5);
+// myLinkedList.reverseBruteForce();
 myLinkedList.append(16);
 
 myLinkedList.prepend(2);
@@ -147,4 +175,5 @@ myLinkedList.prepend(1);
 // myLinkedList.remove(3);
 // myLinkedList.remove(0);
 
-myLinkedList.reverse();
+// myLinkedList.reverseBruteForce();
+myLinkedList.reverseEfficicent();
