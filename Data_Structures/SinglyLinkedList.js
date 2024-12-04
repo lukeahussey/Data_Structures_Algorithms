@@ -110,19 +110,19 @@ class SinglyLinkedList {
     if (this.length === 1) {
       console.log("N.B. Reverse operation skipped due to length of 1");
     }
-    
-    let first = this.head;
-    this.tail = this.head;
-    let second = first.next;
-    while (second) {                                                          // O(n) time complexity
-      const temp = second.next;                                               // O(1) space complexity
-      second.next = first;
-      first = second;
-      second = temp;
+    else {
+      let first = this.head;
+      this.tail = this.head;
+      let second = first.next;
+      while (second) {                                                          // O(n) time complexity
+        const temp = second.next;                                               // O(1) space complexity
+        second.next = first;
+        first = second;
+        second = temp;
+      }
+      this.head.next = null;
+      this.head = first;
     }
-    this.head.next = null;
-    this.head = first;
-
     return this.printList();
   }
   reverseBruteForce() {
