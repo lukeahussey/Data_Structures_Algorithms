@@ -31,9 +31,16 @@ class Stack {
   pop() {
     console.log("\nPOP top value: ", this.top);
     if (this.length <= 0) {
+      console.log("Stack is empty, cannot pop");
       return null;
     }
+    if (this.length == 1) {
+      this.top = null;
+      this.bottom = null;
+    }
+    else {
       this.top = this.top.next;
+    }
     this.length--;
   }
 
@@ -45,10 +52,17 @@ class Stack {
 
 const myStack = new Stack();
 myStack.isEmpty();
+myStack.peek();
 myStack.push("Google");
+myStack.peek();
 myStack.pop();
+myStack.peek();
 myStack.isEmpty();
 myStack.push("Discord");
+myStack.peek();
+myStack.push("Stackoverflow");
+myStack.peek();
 myStack.push("Udemy");
+myStack.peek();
 myStack.pop();
 myStack.isEmpty();
