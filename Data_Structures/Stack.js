@@ -26,6 +26,7 @@ class Stack {
     this.top = newNode;
     this.top.next = currentTop;
     this.length++;
+    return this.printStack();
   }
 
   pop() {
@@ -42,11 +43,25 @@ class Stack {
       this.top = this.top.next;
     }
     this.length--;
+    return this.printStack();
   }
 
   isEmpty() {
     console.log("\nStack is empty = ", this.length < 1);
     return this.length < 1;
+  }
+
+  printStack() {
+    console.log('\nthis.top: ', this.top, '\nthis.bottom: ', this.bottom, '\nthis.length: ', this.length);
+    let currentNode = this.top;
+    let output = "\nSTACK:\n";
+    while (currentNode !== null) {
+      output += 
+        `("${currentNode.value}") ${currentNode === this.top ? '[TOP] ' : ''}${currentNode === this.bottom ? '[BOTTOM]' : ''}\n`;
+      currentNode = currentNode.next;
+    }
+    output += "\n\n=======================================================================";
+    console.log(output);
   }
 }
 
