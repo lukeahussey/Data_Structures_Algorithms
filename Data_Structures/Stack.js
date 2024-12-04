@@ -13,11 +13,7 @@ class Stack {
   }
 
   peek() {
-    console.log("\nPEEK:");
-    if (this.length <= 0) {
-      return null;
-    }
-    return this.top;
+    console.log("\nPEEK top node: ", this.top);
   }
 
   push(value) {
@@ -37,7 +33,7 @@ class Stack {
     if (this.length <= 0) {
       return null;
     }
-    this.top = this.top.next;
+      this.top = this.top.next;
     this.length--;
   }
 
