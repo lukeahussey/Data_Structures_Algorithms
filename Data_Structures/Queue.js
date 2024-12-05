@@ -35,6 +35,9 @@ class Queue {
       console.log("Cannot dequeue from an empty queue");
       return null;
     }
+    if (this.length === 1) {
+      this.last = null;
+    }
     const nodeToDequeue = this.first;
     console.log("\nDEQUEUE first value: ", nodeToDequeue.value);
     this.first = this.first.next
