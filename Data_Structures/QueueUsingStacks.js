@@ -2,11 +2,35 @@ class MyQueue {
   constructor() {
     // this.readStack = [];
     // this.writeStack = [];
-    this.primaryStack = [];
-    this.reversalStack = [];
+    // this.primaryStack = [];
+    // this.reversalStack = [];
+    this.input = [];
+    this.output = [];
   }
 
   enqueue(value) {
+    this.input.push(value);                                                       // O(1) time complexity
+  }
+
+  dequeue() {
+    this.peek();
+    return this.output.pop();                                                     // O(1) time complexity
+  }
+
+  peek() {
+    if (this.output.length < 1) {                                                 // Amortized O(1) time complexity
+      while (this.input.length !== 0) {
+        this.output.push(this.input.pop());
+      }
+    }
+    return this.output[0];
+  }
+
+  isEmpty() {
+    return this.input.length < 1 && this.output.length < 1;                       // O(1) time complexity
+  }
+
+  enqueue_LinearTime(value) {
     // Move array contents into second array in reverse, push new value, then move back
     while (this.primaryStack.length !== 0) {                                            // O(n) time complexity
       this.reversalStack.push(this.primaryStack.pop());                                 // O(n) space complexity
@@ -15,18 +39,6 @@ class MyQueue {
     while (this.reversalStack.length !== 0) {
       this.primaryStack.push(this.reversalStack.pop());
     }
-  }
-
-  dequeue() {
-    return this.primaryStack.pop();                                                     // O(1) time complexity
-  }
-
-  peek() {
-    return this.primaryStack[this.primaryStack.length - 1];                             // O(1) time complexity
-  }
-
-  isEmpty() {
-    return this.primaryStack.length < 1;                                                // O(1) time complexity
   }
 
   enqueue_BruteForce(value) {
