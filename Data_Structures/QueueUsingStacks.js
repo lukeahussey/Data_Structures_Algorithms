@@ -1,10 +1,35 @@
 class MyQueue {
   constructor() {
-    this.readStack = [];
-    this.writeStack = [];
+    // this.readStack = [];
+    // this.writeStack = [];
+    this.primaryStack = [];
+    this.reversalStack = [];
   }
 
   enqueue(value) {
+    // Move array contents into second array in reverse, push new value, then move back
+    while (this.primaryStack.length !== 0) {                                            // O(n) time complexity
+      this.reversalStack.push(this.primaryStack.pop());                                 // O(n) space complexity
+    }
+    this.primaryStack.push(value);
+    while (this.reversalStack.length !== 0) {
+      this.primaryStack.push(this.reversalStack.pop());
+    }
+  }
+
+  dequeue() {
+    return this.primaryStack.pop();                                                     // O(1) time complexity
+  }
+
+  peek() {
+    return this.primaryStack[this.primaryStack.length - 1];                             // O(1) time complexity
+  }
+
+  isEmpty() {
+    return this.primaryStack.length < 1;                                                // O(1) time complexity
+  }
+
+  enqueue_BruteForce(value) {
     this.writeStack.push(value);
     this.readStack = [];
     // Iterate backwards over writeStack adding latest readStack in reverse order
@@ -15,7 +40,7 @@ class MyQueue {
     console.log("readStack: ", this.readStack);
   }
 
-  dequeue() {
+  dequeue_BruteForce() {
     if (this.readStack.length < 1) {
       console.log("Cannot pop from empty stack");
       return null;
@@ -30,23 +55,14 @@ class MyQueue {
     console.log("writeStack: ", this.writeStack);
     return element;
   }
-
-  peek() {
-    if (this.readStack.length < 1) {
-      console.log("Cannot peek from empty stack");
-      return null;
-    }
-    return this.readStack[this.readStack.length - 1];                                   // O(1) time complexity
-  }
-
-  isEmpty() {
-    return this.readStack.length < 1;                                                   // O(1) time complexity
-  }
 };
 
 const myQueue = new MyQueue();
-myQueue.enqueue(1); // queue is: [1]
-myQueue.enqueue(2); // queue is: [1, 2] (leftmost is front of the queue)
-myQueue.dequeue(); // return 1
-myQueue.dequeue(); // return 1, queue is [2]
-myQueue.isEmpty(); // return false
+myQueue.enqueue(1);
+myQueue.enqueue(2);
+myQueue.enqueue(3);
+myQueue.enqueue(4);
+myQueue.enqueue(5);
+myQueue.dequeue();
+myQueue.dequeue();
+myQueue.isEmpty();
