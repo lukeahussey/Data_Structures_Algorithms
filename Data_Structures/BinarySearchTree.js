@@ -15,30 +15,26 @@ class BinarySearchTree {
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
-      return newNode;
     }
-    let currentNode = this.root;
-    while (currentNode !== null) {
-      if (value >= currentNode.value) {
-        if (currentNode.right) {
-          currentNode = currentNode.right;
-        }
-        else {
-          currentNode.right = newNode;
-          currentNode = null;
-        }
-      }
-      else {
-        if (currentNode.left) {
+    else {
+      let currentNode = this.root;
+      while (true) {
+        if (value < currentNode.value) {
+          if (!currentNode.left) {
+            currentNode.left = newNode;
+            return this;
+          }
           currentNode = currentNode.left;
         }
         else {
-          currentNode.left = newNode;
-          currentNode = null;
+          if (!currentNode.right) {
+            currentNode.right = newNode;
+            return this;
+          }
+          currentNode = currentNode.right;
         }
       }
     }
-    return newNode;
   }
 
   lookup(value) {
