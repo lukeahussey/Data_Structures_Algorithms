@@ -1,22 +1,29 @@
 function findFactorialRecursive(number) {
-  console.log("Call stack PUSH for number: ", number);
-  
-  let answer = number;
-
-  if (number < 3) {
-    console.log("Call stack POP for number: ", number);
-    console.log("Running total: ", answer);
-    return answer;
+  // // Streamlined code
+  if (number === 2) {
+    return 2;
   }
+  return answer *= findFactorialRecursive(number-1);
 
-  console.log(`Current stack calculation: ${answer} * ${number-1}`);
-
-  answer *= findFactorialRecursive(number-1);
-
-  console.log("Call stack POP for number: ", number);
-  console.log("Running total: ", answer);
+  // // VERBOSE code with logging
+  // console.log("Call stack PUSH for number: ", number);
   
-  return answer;
+  // let answer = number;
+
+  // if (number < 3) {
+  //   console.log("Call stack POP for number: ", number);
+  //   console.log("Running total: ", answer);
+  //   return answer;
+  // }
+
+  // console.log(`Current stack calculation: ${answer} * ${number-1}`);
+
+  // answer *= findFactorialRecursive(number-1);
+
+  // console.log("Call stack POP for number: ", number);
+  // console.log("Running total: ", answer);
+  
+  // return answer;
 }
 
 function findFactorialIterative(number) {
