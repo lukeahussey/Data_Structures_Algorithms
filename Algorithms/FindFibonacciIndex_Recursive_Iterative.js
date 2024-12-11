@@ -2,6 +2,20 @@
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
 // fibonacciRecursive(6) should return 8
 
+function fibonacciRecursive(n) {
+  //base case
+  if (n === 0) {
+    return 0;
+  }
+  if (n === 1) {
+    return 1;
+  }
+  //recursive case
+  return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
+}
+
+console.log(fibonacciRecursive(6));
+
 function fibonacciIterative(n){
   let first = 0;
   let second = 1;
@@ -23,9 +37,4 @@ function fibonacciIterative(n){
   }
 }
 
-
-function fibonacciRecursive(n) {
-  
-}
-
-console.log(fibonacciIterative(8));
+// console.log(fibonacciIterative(6));
