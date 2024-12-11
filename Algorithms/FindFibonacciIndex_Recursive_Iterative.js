@@ -2,7 +2,7 @@
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
 // fibonacciRecursive(6) should return 8
 
-function fibonacciRecursive(n) {
+function fibonacciRecursive(n) {    // O(2^n) exponential time complexity
   //base case
   if (n < 2) {
     return n;
@@ -13,7 +13,7 @@ function fibonacciRecursive(n) {
 
 console.log(fibonacciRecursive(6));
 
-function fibonacciIterative(n){
+function fibonacciIterative(n){     // O(n) linear time complexity
   let first = 0;
   let second = 1;
   let third = first + second;
