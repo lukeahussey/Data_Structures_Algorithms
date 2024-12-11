@@ -14,24 +14,32 @@ function fibonacciRecursive(n) {    // O(2^n) exponential time complexity
 console.log(fibonacciRecursive(6));
 
 function fibonacciIterative(n){     // O(n) linear time complexity
-  let first = 0;
-  let second = 1;
-  let third = first + second;
-
-  if (n === first) {
-    return first;
-  }
-  if (n === second) {
-    return second;
-  }
+  // O(n) extra space
+  let arr = [0,1];
   for (let i = 2; i <= n; i++) {
-    if (i === n) {
-      return third;
-    }
-    first = second;
-    second = third;
-    third = first + second
+    arr.push(arr[i-1] + arr[i-2]);
   }
+  return arr[n];
+
+  // // Two pointer approach with O(1) extra space
+  // let first = 0;
+  // let second = 1;
+  // let third = first + second;
+
+  // if (n === first) {
+  //   return first;
+  // }
+  // if (n === second) {
+  //   return second;
+  // }
+  // for (let i = 2; i <= n; i++) {
+  //   if (i === n) {
+  //     return third;
+  //   }
+  //   first = second;
+  //   second = third;
+  //   third = first + second
+  // }
 }
 
 // console.log(fibonacciIterative(6));
