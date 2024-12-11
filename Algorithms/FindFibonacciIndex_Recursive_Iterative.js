@@ -4,11 +4,8 @@
 
 function fibonacciRecursive(n) {
   //base case
-  if (n === 0) {
-    return 0;
-  }
-  if (n === 1) {
-    return 1;
+  if (n < 2) {
+    return n;
   }
   //recursive case
   return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
