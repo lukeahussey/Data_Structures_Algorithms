@@ -1,5 +1,5 @@
-function Countdown(number) {
-  // base case:
+function Countdown(number) {      // O(n) time complexity
+  // base case:                   // O(n) space complexity
   if (number < 1) {
     return;
   }
