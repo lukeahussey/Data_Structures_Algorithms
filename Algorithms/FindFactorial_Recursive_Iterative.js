@@ -3,7 +3,7 @@ function findFactorialRecursive(number) {
   if (number === 2) {
     return 2;
   }
-  return answer *= findFactorialRecursive(number-1);
+  return number *= findFactorialRecursive(number-1);
 
   // // VERBOSE code with logging
   // console.log("Call stack PUSH for number: ", number);
