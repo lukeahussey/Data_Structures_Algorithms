@@ -1,10 +1,10 @@
 function reverseString_Iterative(str) {                     // O(n^2) time complexity
-  console.log("str: " + str);                               // O(n) space complexity
+  console.log(`str: "${str}"`);                             // O(n) space complexity
   let reversed = '';
   for (let i = str.length-1; i >= 0; i--) {
     reversed += str[i];
   }
-  console.log("reversed: " + reversed);
+  console.log(`reversed: "${reversed}"`);
 }
 
 reverseString_Iterative("Hello my name is Luke");
@@ -21,5 +21,24 @@ function reverseString_Recursive(str) {                     // O(n^2) time compl
 }
 
 let str = "Hello my name is Luke";
-console.log("str: " + str);
-console.log("reversed: ", reverseString_Recursive(str));
+console.log(`str: "${str}"`);
+console.log(`reversed: "${reverseString_Recursive(str)}"`);
+
+function reverseString_Recursive_Arrays(str) {
+  console.log(`str: "${str}"`);
+  let arrayStr = str.split("");
+  let reversedArray = [];
+  function addToArray(array) {
+    if (array.length > 0) {
+      reversedArray.push(array.pop());
+      addToArray(array);
+    }
+    return;
+  }
+  addToArray(arrayStr);
+  const reversedStr = reversedArray.join("");
+  console.log(`reversedStr: "${reversedStr}"`);
+  return reversedStr;
+}
+
+reverseString_Recursive_Arrays(str);
