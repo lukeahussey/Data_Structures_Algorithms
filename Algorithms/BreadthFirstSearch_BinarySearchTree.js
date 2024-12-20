@@ -113,7 +113,7 @@ class BinarySearchTree {
       }
     }
   }
-  breadthFirstSearch() {
+  breadthFirstSearch_Iterative() {
     let currentNode = this.root;
     let list = [];
     let queue = [];
