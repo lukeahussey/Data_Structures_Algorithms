@@ -4,8 +4,11 @@ var fizzBuzz = function(n) {
   }
   if (isNaN(n)) {
       throw new Error("Input is not a valid number");
-  }
-  
+  }    
+  return constructArray(n);
+};
+
+constructArray = function(n) {
   let arr = [];                           //O(n) space complexity
   for (let i = 1; i <= n; i++) {          //O(n) time complexity
       let tempString = "";
