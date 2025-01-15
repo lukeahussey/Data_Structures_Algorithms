@@ -23,4 +23,12 @@ var fizzBuzz = function(n) {
   return arr;
 }
 
-console.log(fizzBuzz(15)); // ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+//console.log(fizzBuzz(0));         // throws validation error
+//console.log(fizzBuzz(100001));    // throws validation error
+//console.log(fizzBuzz(a));         // throws validation error
+//console.log(fizzBuzz(null));      // throws validation error
+
+console.log(fizzBuzz(1));           // ["1"]
+console.log(fizzBuzz(3));           // ["1","2","Fizz"]
+console.log(fizzBuzz(5));           // ["1","2","Fizz","4","Buzz"]
+console.log(fizzBuzz(15));          // ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
