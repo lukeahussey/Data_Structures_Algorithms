@@ -1,10 +1,10 @@
 var fizzBuzz = function(n) {
+  if (typeof n !== 'number') {
+      throw new Error("Input is not a valid number");
+  }  
   if (n < 1 || n > 100000) {
       throw new Error("Input outside of accepted range");
   }
-  if (isNaN(n)) {
-      throw new Error("Input is not a valid number");
-  }    
   return constructArray(n);
 };
 
@@ -26,12 +26,13 @@ constructArray = function(n) {
   return arr;
 }
 
-//console.log(fizzBuzz(0));         // throws validation error
-//console.log(fizzBuzz(100001));    // throws validation error
-//console.log(fizzBuzz(a));         // throws validation error
-//console.log(fizzBuzz(null));      // throws validation error
+// let a = "12";
+// console.log(fizzBuzz(a));          // throws validation error
+// console.log(fizzBuzz(false));      // throws validation error
+// console.log(fizzBuzz(0));          // throws validation error
+// console.log(fizzBuzz(100001));     // throws validation error
 
-console.log(fizzBuzz(1));           // ["1"]
-console.log(fizzBuzz(3));           // ["1","2","Fizz"]
-console.log(fizzBuzz(5));           // ["1","2","Fizz","4","Buzz"]
-console.log(fizzBuzz(15));          // ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+console.log(fizzBuzz(1));          // ["1"]
+console.log(fizzBuzz(3));          // ["1","2","Fizz"]
+console.log(fizzBuzz(5));          // ["1","2","Fizz","4","Buzz"]
+console.log(fizzBuzz(15));         // ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
