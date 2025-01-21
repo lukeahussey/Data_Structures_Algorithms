@@ -1,7 +1,7 @@
 const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 const numbers2 = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
-// Elementary sorting algorithm - repeatedly steps through input list comparing each pair of adjacent items and swapping largest to the right if necessary
+// Elementary sort algorithm - repeatedly steps through input list comparing each pair of adjacent items and swapping largest to the right if necessary
 function bubbleSort(array) {                      // O(n^2) Time complexity
   for (let i = 0; i < array.length; i++) {        // O(1) Space complexity
     for (let j = 0; j < array.length; j++) {
